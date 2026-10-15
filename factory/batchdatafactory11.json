@@ -1,0 +1,15 @@
+{
+	"name": "batchdatafactory11",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "australiaeast",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ab7c76a2-15d8-41b1-b091-ef95df3e7edf",
+		"tenantId": "a09b17f9-984d-4ec4-9117-5ca92154755b"
+	}
+}
