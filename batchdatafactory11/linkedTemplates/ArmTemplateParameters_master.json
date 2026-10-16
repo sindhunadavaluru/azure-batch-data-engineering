@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "batchdatafactory11"
+		},
+		"AzureDataLakeStorageLS_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage_LS_bronze_accountKey": {
+			"value": ""
+		},
+		"AzureDatabricksDeltaLake_LS_accessToken": {
+			"value": ""
+		},
+		"AzureSqlDatabase_LS_source_password": {
+			"value": ""
+		},
+		"AzureDatabricks_LS_accessToken": {
+			"value": ""
+		},
+		"AzureDataLakeStorageLS_properties_typeProperties_url": {
+			"value": "https://batchstorage11.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage_LS_bronze_properties_typeProperties_url": {
+			"value": "https://batchstorage11.dfs.core.windows.net/"
+		},
+		"AzureSqlDatabase_LS_source_properties_typeProperties_server": {
+			"value": "batchserver.database.windows.net"
+		},
+		"AzureSqlDatabase_LS_source_properties_typeProperties_database": {
+			"value": "batchdatabase"
+		},
+		"AzureSqlDatabase_LS_source_properties_typeProperties_userName": {
+			"value": "batchsqldb"
+		},
+		"RestServiceLS_source_properties_typeProperties_url": {
+			"value": "https://jsonplaceholder.typicode.com/"
+		},
+		"AzureDatabricks_LS_properties_typeProperties_existingClusterId": {
+			"value": "1016-095251-lbazi9p4"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
