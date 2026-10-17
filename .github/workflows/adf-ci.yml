@@ -1,0 +1,26 @@
+name: ADF CI Validation
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'batchdatafactory11/**'
+      - '.github/workflows/adf-ci.yml'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check ADF deployment template exists
+        run: |
+          test -f batchdatafactory11/ARMTemplateForFactory.json
+          test -f batchdatafactory11/ARMTemplateParametersForFactory.json
+          echo "ADF deployment templates found."
