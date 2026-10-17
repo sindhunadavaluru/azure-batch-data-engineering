@@ -19,13 +19,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'AzureDatabricksDeltaLake_LS'"
 		},
-		"AzureSqlDatabase_LS_source_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'AzureSqlDatabase_LS_source'"
-		},
 		"AzureDatabricks_LS_accessToken": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks_LS'"
+		},
+		"AzureSqlDatabase_LS_source_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase_LS_source'"
 		},
 		"AzureDataLakeStorageLS_properties_typeProperties_url": {
 			"type": "string",
@@ -34,6 +34,10 @@
 		"AzureDataLakeStorage_LS_bronze_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://batchstorage11.dfs.core.windows.net/"
+		},
+		"AzureDatabricks_LS_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1016-095251-lbazi9p4"
 		},
 		"AzureSqlDatabase_LS_source_properties_typeProperties_server": {
 			"type": "string",
@@ -50,10 +54,6 @@
 		"RestServiceLS_source_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://jsonplaceholder.typicode.com/"
-		},
-		"AzureDatabricks_LS_properties_typeProperties_existingClusterId": {
-			"type": "string",
-			"defaultValue": "1016-095251-lbazi9p4"
 		},
 		"containerUri": {
 			"type": "string",
@@ -91,17 +91,20 @@
 					"AzureDatabricksDeltaLake_LS_accessToken": {
 						"value": "[parameters('AzureDatabricksDeltaLake_LS_accessToken')]"
 					},
-					"AzureSqlDatabase_LS_source_password": {
-						"value": "[parameters('AzureSqlDatabase_LS_source_password')]"
-					},
 					"AzureDatabricks_LS_accessToken": {
 						"value": "[parameters('AzureDatabricks_LS_accessToken')]"
+					},
+					"AzureSqlDatabase_LS_source_password": {
+						"value": "[parameters('AzureSqlDatabase_LS_source_password')]"
 					},
 					"AzureDataLakeStorageLS_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorageLS_properties_typeProperties_url')]"
 					},
 					"AzureDataLakeStorage_LS_bronze_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage_LS_bronze_properties_typeProperties_url')]"
+					},
+					"AzureDatabricks_LS_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks_LS_properties_typeProperties_existingClusterId')]"
 					},
 					"AzureSqlDatabase_LS_source_properties_typeProperties_server": {
 						"value": "[parameters('AzureSqlDatabase_LS_source_properties_typeProperties_server')]"
@@ -114,9 +117,6 @@
 					},
 					"RestServiceLS_source_properties_typeProperties_url": {
 						"value": "[parameters('RestServiceLS_source_properties_typeProperties_url')]"
-					},
-					"AzureDatabricks_LS_properties_typeProperties_existingClusterId": {
-						"value": "[parameters('AzureDatabricks_LS_properties_typeProperties_existingClusterId')]"
 					}
 				}
 			},

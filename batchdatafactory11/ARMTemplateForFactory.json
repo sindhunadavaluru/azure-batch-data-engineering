@@ -19,13 +19,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'AzureDatabricksDeltaLake_LS'"
 		},
-		"AzureSqlDatabase_LS_source_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'AzureSqlDatabase_LS_source'"
-		},
 		"AzureDatabricks_LS_accessToken": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks_LS'"
+		},
+		"AzureSqlDatabase_LS_source_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase_LS_source'"
 		},
 		"AzureDataLakeStorageLS_properties_typeProperties_url": {
 			"type": "string",
@@ -34,6 +34,10 @@
 		"AzureDataLakeStorage_LS_bronze_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://batchstorage11.dfs.core.windows.net/"
+		},
+		"AzureDatabricks_LS_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1016-095251-lbazi9p4"
 		},
 		"AzureSqlDatabase_LS_source_properties_typeProperties_server": {
 			"type": "string",
@@ -50,10 +54,6 @@
 		"RestServiceLS_source_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://jsonplaceholder.typicode.com/"
-		},
-		"AzureDatabricks_LS_properties_typeProperties_existingClusterId": {
-			"type": "string",
-			"defaultValue": "1016-095251-lbazi9p4"
 		}
 	},
 	"variables": {
@@ -798,6 +798,24 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_LS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-7405612309806436.16.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks_LS_accessToken')]"
+					},
+					"existingClusterId": "[parameters('AzureDatabricks_LS_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase_LS_source')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -830,24 +848,6 @@
 					"url": "[parameters('RestServiceLS_source_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_LS')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureDatabricks",
-				"typeProperties": {
-					"domain": "https://adb-7405612309806436.16.azuredatabricks.net",
-					"accessToken": {
-						"type": "SecureString",
-						"value": "[parameters('AzureDatabricks_LS_accessToken')]"
-					},
-					"existingClusterId": "[parameters('AzureDatabricks_LS_properties_typeProperties_existingClusterId')]"
 				}
 			},
 			"dependsOn": []

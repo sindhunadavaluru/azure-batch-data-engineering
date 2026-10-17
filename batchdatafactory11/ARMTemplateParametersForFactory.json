@@ -14,10 +14,10 @@
 		"AzureDatabricksDeltaLake_LS_accessToken": {
 			"value": ""
 		},
-		"AzureSqlDatabase_LS_source_password": {
+		"AzureDatabricks_LS_accessToken": {
 			"value": ""
 		},
-		"AzureDatabricks_LS_accessToken": {
+		"AzureSqlDatabase_LS_source_password": {
 			"value": ""
 		},
 		"AzureDataLakeStorageLS_properties_typeProperties_url": {
@@ -25,6 +25,9 @@
 		},
 		"AzureDataLakeStorage_LS_bronze_properties_typeProperties_url": {
 			"value": "https://batchstorage11.dfs.core.windows.net/"
+		},
+		"AzureDatabricks_LS_properties_typeProperties_existingClusterId": {
+			"value": "1016-095251-lbazi9p4"
 		},
 		"AzureSqlDatabase_LS_source_properties_typeProperties_server": {
 			"value": "batchserver.database.windows.net"
@@ -37,9 +40,6 @@
 		},
 		"RestServiceLS_source_properties_typeProperties_url": {
 			"value": "https://jsonplaceholder.typicode.com/"
-		},
-		"AzureDatabricks_LS_properties_typeProperties_existingClusterId": {
-			"value": "1016-095251-lbazi9p4"
 		}
 	}
 }
