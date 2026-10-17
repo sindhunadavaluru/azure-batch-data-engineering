@@ -11,8 +11,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Download ADF published templates
+        uses: actions/checkout@v4
+        with:
+          ref: adf_publish
+          path: adf-published
+
       - name: Confirm deployment templates
         run: |
-          test -f batchdatafactory11/ARMTemplateForFactory.json
-          test -f batchdatafactory11/ARMTemplateParametersForFactory.json
+          test -f adf-published/batchdatafactory11/ARMTemplateForFactory.json
+          test -f adf-published/batchdatafactory11/ARMTemplateParametersForFactory.json
           echo "ADF deployment templates found."
