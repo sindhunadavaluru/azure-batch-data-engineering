@@ -16,7 +16,7 @@ jobs:
       - name: Checkout source repository
         uses: actions/checkout@v4
 
-      - name: Checkout published ADF templates
+      - name: Download ADF published templates
         uses: actions/checkout@v4
         with:
           ref: adf_publish
