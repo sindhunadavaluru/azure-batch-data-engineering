@@ -1,24 +1,38 @@
+
 name: ADF CD Deployment
 
 on:
   workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout source repository
         uses: actions/checkout@v4
 
-      - name: Download ADF published templates
+      - name: Checkout published ADF templates
         uses: actions/checkout@v4
         with:
           ref: adf_publish
           path: adf-published
 
-      - name: Confirm deployment templates
+      - name: Azure login using OIDC
+        uses: azure/login@v3
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy Azure Data Factory ARM template
         run: |
-          test -f adf-published/batchdatafactory11/ARMTemplateForFactory.json
-          test -f adf-published/batchdatafactory11/ARMTemplateParametersForFactory.json
-          echo "ADF deployment templates found."
+          az deployment group create \
+            --name "adf-github-actions-deployment" \
+            --resource-group "rg-batch-data-project" \
+            --template-file "adf-published/batchdatafactory11/ARMTemplateForFactory.json" \
+            --parameters "@adf-published/batchdatafactory11/ARMTemplateParametersForFactory.json"
