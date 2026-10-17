@@ -22,10 +22,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Validate ADF source files
+      - name: Check ADF source folders
         run: |
           test -d pipeline
           test -d dataset
           test -d linkedService
           test -d factory
-          echo "ADF source folders found successfully."
+          echo "ADF source folders found."
+
+      - name: Validate ADF JSON files
+        run: |
+          find pipeline dataset linkedService factory -type f -name '*.json' -print0 |
+          while IFS= read -r -d '' file; do
+            echo "Checking $file"
+            python -m json.tool "$file" > /dev/null
+          done
+          echo "ADF JSON syntax validation passed."
