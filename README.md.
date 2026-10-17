@@ -1,3 +1,139 @@
 # Azure Batch Data Engineering
+# End-to-End Batch Data Engineering Project on Azure
+
+## Project Overview
+
+This project demonstrates an end-to-end batch data engineering solution using Azure Data Factory, Azure Data Lake Storage Gen2, Azure Databricks, Delta Lake, and GitHub.
+
+The solution ingests data from multiple sources, stores it in a data lake, transforms it using PySpark, and organizes it into Bronze, Silver, and Gold layers.
+
+## Architecture
+
+```text
+Data Sources
+  ├── REST API (JSONPlaceholder Posts API)
+  ├── Azure SQL Database (Customers)
+  └── CSV File (Sales)
+          |
+          v
+Azure Data Factory
+  Data Ingestion and Orchestration
+          |
+          v
+ADLS Gen2 - Landing Layer
+          |
+          v
+Azure Databricks + PySpark
+          |
+          v
+Bronze Layer - Raw Data in Delta Format
+          |
+          v
+Silver Layer - Cleaned and Deduplicated Data
+          |
+          v
+Gold Layer - Aggregated Business Data
+          |
+          v
+GitHub - Source Control
+```
+
+## Technology Stack
+
+- Azure Data Factory (ADF)
+- Azure Data Lake Storage Gen2 (ADLS Gen2)
+- Azure Databricks
+- Apache Spark and PySpark
+- Delta Lake
+- Azure SQL Database
+- REST API integration
+- Git and GitHub
+
+## Data Sources
+
+### 1. Sales Data
+A CSV file containing order details, customer IDs, products, quantities, unit prices, and order dates.
+
+### 2. Customer Data
+Customer records extracted from Azure SQL Database.
+
+### 3. Posts Data
+JSON data ingested from the JSONPlaceholder REST API.
+
+## Data Lake Structure
+
+The ADLS Gen2 storage account uses the following containers:
+
+- `landing` — Source files received from upstream systems.
+- `bronze` — Data persisted in Delta format.
+- `silver` — Cleaned and validated data.
+- `gold` — Aggregated datasets ready for analysis.
+
+## Data Transformation
+
+### Bronze Layer
+- Reads source files from the landing container.
+- Persists data in Delta format for further processing.
+
+### Silver Layer
+- Removes duplicate records.
+- Filters records with required fields missing.
+- Trims text fields.
+- Standardizes customer email addresses to lowercase.
+
+### Gold Layer
+- **Sales:** Aggregates quantities and sales amounts by product.
+- **Posts:** Counts posts by user.
+- **Customers:** Counts customers by city.
+
+## Azure Data Factory Pipelines
+
+The project includes ingestion pipelines for sales, customer, and posts data, along with a master pipeline named `master_data_pipeline`.
+
+The master pipeline orchestrates three Databricks notebook activities:
+
+1. `run_ingestion_sales`
+2. `run_ingestion_posts`
+3. `run_ingestion_customers`
+
+The activities are configured with success dependencies to execute sequentially.
+
+## Databricks Notebooks
+
+- `ingestion_sales.ipynb`
+- `ingestion_posts.ipynb`
+- `ingestion_customer.ipynb`
+
+Each notebook implements the Bronze, Silver, and Gold transformations for its respective dataset.
+
+## GitHub Version Control
+
+The repository maintains the ADF source artifacts and Databricks notebooks.
+
+- `main` — Source-controlled ADF pipeline definitions, datasets, linked services, trigger configuration, and Databricks notebooks.
+- `adf_publish` — Generated Azure Data Factory deployment templates.
+
+## Validation
+
+The following have been tested successfully:
+
+- Data ingestion from the REST API, Azure SQL Database, and CSV source.
+- Databricks notebook execution for sales, posts, and customer data.
+- Bronze, Silver, and Gold transformations.
+- End-to-end execution of `master_data_pipeline`.
+- Scheduled trigger execution of the master pipeline.
+- Publishing ADF changes and committing source artifacts to GitHub.
+
+## Future Enhancements
+
+- Implement automated CI/CD deployment across development and production environments.
+- Add pipeline failure notifications and retry policies.
+- Improve data quality checks and operational monitoring.
+- Integrate reporting and analytics tools with the Gold layer.
+
+## Disclaimer
+
+This repository is a learning project. Azure resources and compute services may incur charges. Stop unused triggers and terminate compute resources when they are not required.
+
 
 End-to-end batch data engineering project using Azure Data Factory, ADLS Gen2, Azure Databricks, and GitHub.
