@@ -42,7 +42,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/baddulaansika@gmail.com/batch_data_pro/ingestion_posts"
+					"notebookPath": "/Users/baddulaansika@gmail.com/ingestion_posts"
 				},
 				"linkedServiceName": {
 					"referenceName": "AzureDatabricks_LS",
