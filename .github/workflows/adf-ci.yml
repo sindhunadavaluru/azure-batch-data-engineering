@@ -5,7 +5,10 @@ on:
     branches:
       - main
     paths:
-      - 'batchdatafactory11/**'
+      - 'pipeline/**'
+      - 'dataset/**'
+      - 'linkedService/**'
+      - 'factory/**'
       - '.github/workflows/adf-ci.yml'
   pull_request:
     branches:
@@ -19,8 +22,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check ADF deployment template exists
+      - name: Validate ADF source files
         run: |
-          test -f batchdatafactory11/ARMTemplateForFactory.json
-          test -f batchdatafactory11/ARMTemplateParametersForFactory.json
-          echo "ADF deployment templates found."
+          test -d pipeline
+          test -d dataset
+          test -d linkedService
+          test -d factory
+          echo "ADF source folders found successfully."
